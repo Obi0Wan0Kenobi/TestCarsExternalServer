@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/gofiber/fiber/v2/middleware/compress"
 	"log"
 	"strconv"
 	"sync/atomic"
@@ -31,6 +32,11 @@ func main() {
 	bumpDays.Store(1)        //обновлённые машины будут свежее на 1 день (в днях)
 
 	app := fiber.New()
+
+	//gzip middleware, решил добавить сжатие ответа :)
+	app.Use(compress.New(compress.Config{
+		Level: compress.LevelBestSpeed,
+	}))
 
 	//POST /values/set
 	//count - сколько авто будет выводиться
