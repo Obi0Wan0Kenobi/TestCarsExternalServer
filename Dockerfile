@@ -1,5 +1,3 @@
-LABEL authors="driver0black"
-
 FROM golang:1.24.11-alpine AS builder
 
 WORKDIR /app
